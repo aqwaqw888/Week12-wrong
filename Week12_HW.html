@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Week12 HW</title>
+	<link rel="stylesheet" type="text/css" href="Week12_HW_style.css">
+</head>
+<body>
+<div class="back">
+	<h2>Guessing Game </h2>
+	<form>
+		<label>Your guess(1~100)</label><br>
+		<input type="number" id="num" name="guess">
+	</form>
+	
+	<input type="button" id="play" value="play" name="play" onclick="guess()" >
+	<table id = 'table'>
+		<tr>
+			<th>Result</th>
+		</tr>
+	</table>
+</div>
+
+<script type="text/javascript">
+
+	var min = 1;
+	var max = 100;
+	var rand = Math.floor((Math.random()*100)+1);
+	
+	function guess() {
+		var num = document.getElementById("num").value;
+		if (num==rand) {
+			alert("Bingooooo!");
+			location.reload();
+		}
+		while (num!=rand) {
+			if (num>rand) {
+				if (num<max) { max=num; }
+				var tr = document.createElement("tr");
+				var td = document.createElement("td");
+				var text = document.createTextNode(min + "~" + max);
+				td.appendChild(text);
+				tr.appendChild(td);
+				document.getElementById("table").appendChild(tr);
+				break;
+			} else {
+				if (num>min) {min=num;}
+				var tr = document.createElement("tr");
+				var td = document.createElement("td");
+				var text = document.createTextNode(min + "~" + max);
+				td.appendChild(text);
+				tr.appendChild(td);
+				document.getElementById("table").appendChild(tr);
+				break;
+			}
+		}
+	}
+	
+	
+</script>
+</body>
+</html>
